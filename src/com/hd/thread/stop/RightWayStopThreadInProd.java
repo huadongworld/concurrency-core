@@ -24,7 +24,7 @@ public class RightWayStopThreadInProd implements Runnable {
     }
 
     private void throwInMethod() throws InterruptedException {
-            Thread.sleep(2000);
+        Thread.sleep(2000);
     }
 
     public static void main(String[] args) throws InterruptedException {

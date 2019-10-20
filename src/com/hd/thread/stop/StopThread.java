@@ -1,8 +1,7 @@
 package com.hd.thread.stop;
 
 /**
- * 错误的停止方法：用stop()来停止线程，会导致线程运行一半突然停止，没办法完成一个基本单位的操作（一个连队），
- * 会造成脏数据（有的连队多领取少领取装备）。
+ * 错误的停止方法：用stop()来停止线程，会导致线程运行一半突然停止，没办法完成一个基本单位的操作（一个连队），会造成脏数据（有的连队多领取少领取装备）。
  *
  * @author HuaDong
  * @date 2019/10/19 22:31
@@ -30,7 +29,7 @@ public class StopThread implements Runnable {
         Thread thread = new Thread(new StopThread());
         thread.start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(800);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

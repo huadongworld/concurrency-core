@@ -1,17 +1,17 @@
 package com.hd.thread.stop;
 
 /**
- * 描述：     注意Thread.interrupted()方法的目标对象是“当前线程”，而不管本方法来自于哪个对象
+ * 注意Thread.interrupted()方法的目标对象是“当前线程”，而不管本方法来自于哪个对象
+ *
+ * @author HuaDong
+ * @date 2019/10/19 23:22
  */
 public class RightWayInterrupted {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Thread threadOne = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (; ; ) {
-                }
+        Thread threadOne = new Thread(() -> {
+            for (; ; ) {
             }
         });
 
