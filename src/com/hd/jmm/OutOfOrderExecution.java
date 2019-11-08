@@ -1,4 +1,4 @@
-package com.hd.thread.jmm;
+package com.hd.jmm;
 
 import java.util.concurrent.CountDownLatch;
 

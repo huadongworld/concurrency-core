@@ -1,4 +1,4 @@
-package com.hd.thread.jmm;
+package com.hd.jmm;
 
 /**
  * 演示可见性带来的问题

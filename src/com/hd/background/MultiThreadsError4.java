@@ -1,4 +1,4 @@
-package com.hd.thread.background;
+package com.hd.background;
 
 /**
  * 初始化未完毕，就this赋值

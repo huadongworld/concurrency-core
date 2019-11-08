@@ -1,4 +1,4 @@
-package com.hd.thread.background;
+package com.hd.background;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

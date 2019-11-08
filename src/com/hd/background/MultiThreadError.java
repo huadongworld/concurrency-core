@@ -1,4 +1,4 @@
-package com.hd.thread.background;
+package com.hd.background;
 
 /**
  * 第二章线程安全问题，演示死锁。

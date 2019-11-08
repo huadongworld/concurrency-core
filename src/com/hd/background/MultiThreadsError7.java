@@ -1,22 +1,30 @@
-package com.hd.thread.background;
+package com.hd.background;
+
 
 /**
- * 观察者模式
+ * 用工厂模式修复刚才的初始化问题
  *
  * @author HuaDong
- * @date 2019/11/3 12:32
+ * @date 2019/11/3 14:28
  */
-public class MultiThreadsError5 {
+public class MultiThreadsError7 {
 
     private int count;
+    private EventListener listener;
 
-    public MultiThreadsError5(MySource source) {
-        source.registerListener(event -> System.out.println("\n我得到的数字是" + count));
-        //模拟业务操作
+    private MultiThreadsError7(MySource source) {
+        listener = event -> System.out.println("\n我得到的数字是" + count);
+
         for (int i = 0; i < 10000; i++) {
             System.out.print(i);
         }
         count = 100;
+    }
+
+    public static MultiThreadsError7 getInstance(MySource source) {
+        MultiThreadsError7 safeListener = new MultiThreadsError7(source);
+        source.registerListener(safeListener.listener);
+        return safeListener;
     }
 
     public static void main(String[] args) {
@@ -27,11 +35,10 @@ public class MultiThreadsError5 {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            mySource.eventCome(new Event() {
+            mySource.eventCome(new MultiThreadsError5.Event() {
             });
         }).start();
-
-        new MultiThreadsError5(mySource);
+        new MultiThreadsError7(mySource);
     }
 
     static class MySource {
@@ -42,7 +49,7 @@ public class MultiThreadsError5 {
             this.listener = eventListener;
         }
 
-        void eventCome(Event e) {
+        void eventCome(MultiThreadsError5.Event e) {
             if (listener != null) {
                 listener.onEvent(e);
             } else {
@@ -53,10 +60,9 @@ public class MultiThreadsError5 {
     }
 
     interface EventListener {
-        void onEvent(Event e);
+        void onEvent(MultiThreadsError5.Event e);
     }
 
     interface Event {
-
     }
 }
