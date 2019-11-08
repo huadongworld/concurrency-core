@@ -1,4 +1,4 @@
-package com.hd.singleton;
+package com.hd.thread.singleton;
 
 /**
  * 懒汉式（线程不安全）（不推荐）

@@ -1,4 +1,4 @@
-package com.hd.singleton;
+package com.hd.thread.singleton;
 
 /**
  * 静态内部类方式，可用

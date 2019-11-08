@@ -1,4 +1,4 @@
-package com.hd.singleton;
+package com.hd.thread.singleton;
 
 /**
  * 双重检查（推荐面试使用）

@@ -1,4 +1,4 @@
-package com.hd.singleton;
+package com.hd.thread.singleton;
 
 /**
  * 饿汉式（静态代码块）（可用）

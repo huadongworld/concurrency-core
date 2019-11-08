@@ -1,4 +1,4 @@
-package com.hd.singleton;
+package com.hd.thread.singleton;
 
 /**
  * 枚举单例
