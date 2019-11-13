@@ -11,6 +11,7 @@ public class TransferMoney implements Runnable {
     private int flag = 1;
     private static Account a = new Account(500);
     private static Account b = new Account(500);
+    private static Object lock = new Object();
 
     public static void main(String[] args) throws InterruptedException {
         TransferMoney r1 = new TransferMoney();
@@ -48,14 +49,12 @@ public class TransferMoney implements Runnable {
      * @param amount 转账金额
      */
     public static void transferMoney(Account from, Account to, int amount) {
-        synchronized (from) {
-            try {
-                //模拟业务耗时
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            synchronized (to) {
+
+        /**
+         * 辅助类
+         */
+        class Helper {
+            public void transfer() {
                 if (from.balance - amount < 0) {
                     System.out.println("余额不足，转账失败。");
                     return;
@@ -63,6 +62,33 @@ public class TransferMoney implements Runnable {
                 from.balance -= amount;
                 to.balance = to.balance + amount;
                 System.out.println("成功转账" + amount + "元");
+            }
+        }
+
+        //使用类的hash值来帮助排序
+        int fromHash = System.identityHashCode(from);
+        int toHash = System.identityHashCode(to);
+
+        if (fromHash < toHash) {
+            synchronized (from) {
+                synchronized (to) {
+                    new Helper().transfer();
+                }
+            }
+        } else if (fromHash > toHash) {
+            synchronized (to) {
+                synchronized (from) {
+                    new Helper().transfer();
+                }
+            }
+        } else {
+            //发生hash碰撞时，可以增加锁来进行控制，类似“加时赛”
+            synchronized (lock) {
+                synchronized (to) {
+                    synchronized (from) {
+                        new Helper().transfer();
+                    }
+                }
             }
         }
     }
