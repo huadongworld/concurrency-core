@@ -2,8 +2,8 @@ package com.hd.thread.uncaughtexception;
 
 /**
  * 1. 不加try catch抛出4个异常，都带线程名字
- * 2. 加了try catch,期望捕获到第一个线程的异常，线程234不应该运行，希望看到打印出Caught Exception
- * 3. 执行时发现，根本没有Caught Exception，线程234依然运行并且抛出异常
+ * 2. 加了try catch,期望捕获到第一个线程的异常，线程234不应该运行，希望看到打印出 main --- Caught Exception
+ * 3. 执行时发现，根本没有 main --- Caught Exception，线程234依然运行并且抛出异常
  * 4. 说明线程的异常不能用传统方法捕获
  *
  * @author HuaDong
@@ -21,7 +21,7 @@ public class CantCatchDirectly implements Runnable {
             Thread.sleep(300);
             new Thread(new CantCatchDirectly(), "MyThread-4").start();
         } catch (RuntimeException e) {
-            System.out.println("Caught Exception.");
+            System.out.println(Thread.currentThread().getName() + " --- Caught Exception.");
         }
     }
 
@@ -30,7 +30,7 @@ public class CantCatchDirectly implements Runnable {
         try {
             throw new RuntimeException();
         } catch (RuntimeException e) {
-            System.out.println("Caught Exception.");
+            System.out.println(Thread.currentThread().getName() + " --- Caught Exception.");
         }
     }
 }

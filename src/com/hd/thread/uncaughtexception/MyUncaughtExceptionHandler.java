@@ -4,7 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 自己的MyUncaughtExceptionHandler
+ * 自己的 MyUncaughtExceptionHandler
  *
  * @author HuaDong
  * @date 2019/11/3 10:41
